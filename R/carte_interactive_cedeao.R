@@ -17,7 +17,7 @@
 #' carte_interactive_cedeao(
 #'   base_senegal = base_sen,
 #'   shapefile_ce_deao = "data/shapefiles/wca_admbnda_adm0_ocha_29062021.shp",
-#'   shapefile_senegal = "data/shapefiles/Limite_Région.shp"
+#'   shapefile_senegal = "data/shapefiles/Limite_Region.shp"
 #' )
 #' }
 carte_interactive_cedeao <- function(base_senegal,

@@ -27,7 +27,7 @@ base_sen <- data.frame(
 )
 carte_interactive_uemoa(
   base_senegal = base_sen,
-  shapefile_senegal = "data/shapefiles/Limite_Région.shp"
+  shapefile_senegal = "data/shapefiles/Limite_Region.shp"
 )
 }
 }

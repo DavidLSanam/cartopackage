@@ -1,6 +1,6 @@
 # cartopackage
 
-**cartopackage** est un package R conçu pour visualiser la **consommation de produits de la mer** en Afrique, avec un focus particulier sur les pays de la **CEDEAO**, de l’**UEMOA** et sur les **régions du Sénégal**.
+**cartopackage** est un package R conçu pour visualiser la **consommation de produits de la mer** en Afrique, avec un focus particulier sur les pays de la **CEDEAO**, de l’**UEMOA** et sur les **Regions du Sénégal**.
 
 Il propose des **cartes interactives** basées sur **Leaflet** qui affichent la consommation moyenne annuelle par tête, à la fois au niveau national et régional.
 
@@ -9,7 +9,7 @@ Il propose des **cartes interactives** basées sur **Leaflet** qui affichent la 
 ## **Fonctionnalités principales**
 
 - **`carte_interactive_afrique()`**  
-  Crée une carte interactive couvrant **toute l'Afrique** avec les données de consommation FAO par pays et les régions du Sénégal.
+  Crée une carte interactive couvrant **toute l'Afrique** avec les données de consommation FAO par pays et les Regions du Sénégal.
 
 - **`carte_interactive_cedeao()`**  
   Affiche la **consommation moyenne des pays de la CEDEAO** et les régions du Sénégal.
@@ -60,7 +60,7 @@ base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta") # Ou une autre base
 carte <- carte_interactive_cedeao(
   base_senegal,
   shapefile_ce_deao = "shapefiles/wca_admbnda_adm0_ocha_29062021.shp",
-  shapefile_senegal = "shapefiles/Limite_Région.shp"
+  shapefile_senegal = "shapefiles/Limite_Region.shp"
 )
 
 carte  # Affiche la carte interactive
@@ -72,7 +72,7 @@ base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta")  # Ou une autre bas
 
 carte <- carte_interactive_uemoa(
   base_senegal = base_senegal,
-  shapefile_senegal = "shapefiles/Limite_Région.shp"
+  shapefile_senegal = "shapefiles/Limite_Region.shp"
 )
 
 carte
@@ -82,7 +82,7 @@ carte
 
 carte <- carte_interactive_afrique(
   base_senegal_path = "BASE_X1_Appuree.dta",
-  shapefile_senegal = "shapefiles/Limite_Région.shp"
+  shapefile_senegal = "shapefiles/Limite_Region.shp"
 )
 
 carte

@@ -24,7 +24,7 @@ sont affichées avec des données détaillées.
 \dontrun{
 carte <- carte_interactive_afrique(
   base_senegal_path = "Base_X1_Appuree.dta",
-  shapefile_senegal = "shapefiles/Limite_Région.shp"
+  shapefile_senegal = "shapefiles/Limite_Region.shp"
 )
 }
 }

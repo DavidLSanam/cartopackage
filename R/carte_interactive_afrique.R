@@ -16,7 +16,7 @@
 #' \dontrun{
 #' carte <- carte_interactive_afrique(
 #'   base_senegal_path = "Base_X1_Appuree.dta",
-#'   shapefile_senegal = "shapefiles/Limite_Région.shp"
+#'   shapefile_senegal = "shapefiles/Limite_Region.shp"
 #' )
 #' }
 carte_interactive_afrique <- function(base_senegal_path,
