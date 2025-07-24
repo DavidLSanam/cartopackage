@@ -26,6 +26,29 @@
 carte_interactive_uemoa <- function(base_senegal,
                                     shapefile_senegal) {
 
+  # Fonction pour installer un package si nécessaire
+  installer_si_absent <- function(pkg) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      install.packages(pkg)
+    }
+  }
+
+  # Installation conditionnelle des packages
+  installer_si_absent("leaflet")
+  installer_si_absent("leaflet.extras")
+  installer_si_absent("sf")
+  installer_si_absent("rnaturalearth")
+  installer_si_absent("dplyr")
+  installer_si_absent("tibble")
+
+  # Chargement des bibliothèques
+  library(leaflet)
+  library(leaflet.extras)
+  library(dplyr)
+  library(sf)
+  library(rnaturalearth)
+  library(tibble)
+
   # -------------------------------
   # Vérification des colonnes
   # -------------------------------
@@ -79,6 +102,13 @@ carte_interactive_uemoa <- function(base_senegal,
   }
 
   # -------------------------------
+  # Consommation nationale Sénégal
+  # -------------------------------
+  conso_nationale_sn <- shp_uemoa %>%
+    dplyr::filter(admin == "Senegal") %>%
+    dplyr::pull(consommation_mer_kg)
+
+  # -------------------------------
   # Palettes de couleurs
   # -------------------------------
   pal_pays <- leaflet::colorNumeric(
@@ -105,7 +135,10 @@ carte_interactive_uemoa <- function(base_senegal,
       weight = 1,
       opacity = 1,
       fillOpacity = 0.7,
-      popup = ~paste0("<b>", admin, "</b><br>Consommation moyenne annuelle par tête : ", consommation_mer_kg, " kg/an")
+      group = "Pays",
+      label = ~admin,
+      popup = ~paste0("<b>", admin, "</b><br>Consommation moyenne : ",
+                      consommation_mer_kg, " kg/an")
     ) %>%
     leaflet::addPolygons(
       data = shp_senegal,
@@ -114,21 +147,32 @@ carte_interactive_uemoa <- function(base_senegal,
       weight = 1,
       opacity = 1,
       fillOpacity = 0.7,
-      popup = ~paste0(
-        "<b>", NOMREG, "</b><br>Consommation moyenne annuelle par tête : ",
-        round(QuantConsKGMoyIndAnnee, 1), " kg/an"
-      )
+      group = "Régions Sénégal",
+      label = ~NOMREG,
+      popup = ~paste0("<b>", NOMREG, " (Sénégal)</b><br>",
+                      "Consommation régionale : ", round(QuantConsKGMoyIndAnnee, 1), " kg/an<br>",
+                      "Consommation nationale : ", conso_nationale_sn, " kg/an")
     ) %>%
     leaflet::addLegend(
       position = "bottomright",
       pal = pal_pays,
       values = shp_uemoa$consommation_mer_kg,
-      title = "Conso UEMOA (kg/an)"
+      title = "Consommation pays UEMOA (kg/an)"
     ) %>%
     leaflet::addLegend(
       position = "bottomleft",
       pal = pal_senegal,
       values = shp_senegal$QuantConsKGMoyIndAnnee,
-      title = "Conso Sénégal (kg/an)"
+      title = "Consommation régions Sénégal (kg/an)"
+    ) %>%
+    leaflet::addLayersControl(
+      overlayGroups = c("Pays", "Régions Sénégal"),
+      options = leaflet::layersControlOptions(collapsed = FALSE)
+    ) %>%
+    leaflet.extras::addSearchFeatures(
+      targetGroups = c("Pays", "Régions Sénégal"),
+      options = leaflet.extras::searchFeaturesOptions(
+        zoom = 5, openPopup = TRUE, firstTipSubmit = TRUE
+      )
     )
 }
