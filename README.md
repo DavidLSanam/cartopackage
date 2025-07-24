@@ -55,7 +55,7 @@ dplyr et tibble – Manipulation des données.
 
 library(cartopackage)
 
-base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta")
+base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta") # Ou une autre base du même type e votre choix
 
 carte <- carte_interactive_cedeao(
   base_senegal,
@@ -68,7 +68,7 @@ carte  # Affiche la carte interactive
 
 ### 2. Carte UEMOA
 
-base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta")
+base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta")  # Ou une autre base du même type e votre choix
 
 carte <- carte_interactive_uemoa(
   base_senegal = base_senegal,
