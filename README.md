@@ -51,41 +51,45 @@ dplyr et tibble – Manipulation des données.
 
 
 ## Exemples d’utilisation
-### 1. Carte CEDEAO
+### 1. Carte CEDEAO et UEMOA
 
 library(cartopackage)
 
-base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta") # Ou une autre base du même type e votre choix
-
-carte <- carte_interactive_cedeao(
-  base_senegal,
-  shapefile_ce_deao = "shapefiles/wca_admbnda_adm0_ocha_29062021.shp",
-  shapefile_senegal = "shapefiles/Limite_Region.shp"
+# Préparer la base Sénégal à partir du package
+base_senegal <- preparer_base_senegal(
+  system.file("BASE_X1_Appuree.dta", package = "cartopackage")
 )
 
-carte  # Affiche la carte interactive
-
-
-### 2. Carte UEMOA
-
-base_senegal <- preparer_base_senegal("BASE_X1_Appuree.dta")  # Ou une autre base du même type e votre choix
-
-carte <- carte_interactive_uemoa(
+# Carte interactive CEDEAO
+carte_cedeao <- carte_interactive_cedeao(
   base_senegal = base_senegal,
-  shapefile_senegal = "shapefiles/Limite_Region.shp"
+  shapefile_ce_deao = system.file("shapefiles/wca_admbnda_adm0_ocha_29062021.shp", package = "cartopackage"),
+  shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
 )
+carte_cedeao
 
-carte
 
+# Carte interactive UEMOA
+carte_uemoa <- carte_interactive_uemoa(
+  base_senegal = base_senegal,
+  shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
+)
+carte_uemoa
 
 ### 3. Carte Afrique
 
-carte <- carte_interactive_afrique(
-  base_senegal_path = "BASE_X1_Appuree.dta",
-  shapefile_senegal = "shapefiles/Limite_Region.shp"
+library(cartopackage)
+
+base_senegal <- preparer_base_senegal(
+  system.file("BASE_X1_Appuree.dta", package = "cartopackage")
 )
 
+carte <- carte_interactive_afrique(
+  base_senegal_path = system.file("BASE_X1_Appuree.dta", package = "cartopackage"),
+  shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
+)
 carte
+
 
 
 ## Auteurs
