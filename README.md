@@ -24,7 +24,12 @@ Il propose des **cartes interactives** basées sur **Leaflet** qui affichent la 
 
 ## **Installation**
 
-### **1. Depuis GitHub**
+Télécharger et installer Rtools 4.5 via le lien suivant : https://cran.r-project.org/bin/windows/Rtools/
+
+Ensuite, installer les packages necessaires : 
+install.packages(c("rnaturalearth", "leaflet", "leaflet.extras", "dplyr", "sf", "haven", "tibble", "rnaturalearthdata"))
+
+### ** Depuis GitHub**
 
 # Installer remotes si nécessaire
 if (!requireNamespace("remotes", quietly = TRUE)) {
@@ -66,6 +71,7 @@ carte_cedeao <- carte_interactive_cedeao(
   shapefile_ce_deao = system.file("shapefiles/wca_admbnda_adm0_ocha_29062021.shp", package = "cartopackage"),
   shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
 )
+
 carte_cedeao
 
 
@@ -74,6 +80,7 @@ carte_uemoa <- carte_interactive_uemoa(
   base_senegal = base_senegal,
   shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
 )
+
 carte_uemoa
 
 ### 3. Carte Afrique
@@ -88,6 +95,7 @@ carte <- carte_interactive_afrique(
   base_senegal_path = system.file("BASE_X1_Appuree.dta", package = "cartopackage"),
   shapefile_senegal = system.file("shapefiles/Limite_Region.shp", package = "cartopackage")
 )
+
 carte
 
 
