@@ -29,6 +29,16 @@ Télécharger et installer Rtools 4.5 via le lien suivant : https://cran.r-proje
 Ensuite, installer les packages necessaires : 
 install.packages(c("rnaturalearth", "leaflet", "leaflet.extras", "dplyr", "sf", "haven", "tibble", "rnaturalearthdata"))
 
+Puis, faire 
+library(rnaturalearth)      # Accès aux données géospatiales mondiales (pays, régions)
+library(leaflet)            # Création de cartes interactives
+library(leaflet.extras)     # Fonctionnalités supplémentaires pour Leaflet
+library(dplyr)              # Manipulation de données (sélection, filtrage, agrégation)
+library(sf)                 # Manipulation de données géospatiales (Simple Features)
+library(haven)              # Lecture/écriture de fichiers .dta (Stata), .sav (SPSS), etc.
+library(tibble)             # Amélioration des data.frames (affichage, manipulation)
+library(rnaturalearthdata)  # Données supplémentaires pour rnaturalearth
+
 ### ** Depuis GitHub**
 
 # Installer remotes si nécessaire
@@ -74,6 +84,7 @@ carte_cedeao <- carte_interactive_cedeao(
 
 carte_cedeao
 
+htmlwidgets::saveWidget(carte_cedeao, "carte_interactive_cedeao.html") # Enregistrement de la carte
 
 # Carte interactive UEMOA
 carte_uemoa <- carte_interactive_uemoa(
@@ -82,6 +93,8 @@ carte_uemoa <- carte_interactive_uemoa(
 )
 
 carte_uemoa
+
+htmlwidgets::saveWidget(carte_uemoa, "carte_interactive_uemoa.html") # Enregistrement de la carte
 
 ### 3. Carte Afrique
 
@@ -98,6 +111,7 @@ carte <- carte_interactive_afrique(
 
 carte
 
+htmlwidgets::saveWidget(carte, "carte_interactive_afrique.html") # Enregistrement de la carte
 
 
 ## Auteurs
